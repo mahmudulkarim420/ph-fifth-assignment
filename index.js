@@ -12,8 +12,14 @@ for (let i = 1; i <= 9; i++) {
   heartBtn.addEventListener("click", () => {
     hearts++;
     document.getElementById("heart-number").innerText = hearts;
+    
+    
+    heartBtn.classList.toggle("text-red-500"); 
+    heartBtn.classList.toggle("fa-regular");  
+    heartBtn.classList.toggle("fa-solid");     
   });
 }
+
 
 
 
