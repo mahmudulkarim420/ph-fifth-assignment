@@ -1,177 +1,123 @@
   let hearts = 0;
   let coins = 100;
   let copys = 0;
+  let callHistory = [];
 
-  // Card 1
-  const heartBtn1 = document.getElementById("heart-btn-1");
-  heartBtn1.addEventListener("click", () => {
+
+
+// Hearts Count
+for (let i = 1; i <= 9; i++) {
+  const heartBtn = document.getElementById(`heart-btn-${i}`);
+  
+  heartBtn.addEventListener("click", () => {
     hearts++;
     document.getElementById("heart-number").innerText = hearts;
   });
+}
 
-  // Card 2
-  const heartBtn2 = document.getElementById("heart-btn-2");
-  heartBtn2.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
 
-  // Card 3
-  const heartBtn3 = document.getElementById("heart-btn-3");
-  heartBtn3.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
 
-  // Card 4
-  const heartBtn4 = document.getElementById("heart-btn-4");
-  heartBtn4.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
-
-  // Card 5
-  const heartBtn5 = document.getElementById("heart-btn-5");
-  heartBtn5.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
-
-  // Card 6
-  const heartBtn6 = document.getElementById("heart-btn-6");
-  heartBtn6.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
-
-  // Card 7
-  const heartBtn7 = document.getElementById("heart-btn-7");
-  heartBtn7.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
-
-  // Card 8
-  const heartBtn8 = document.getElementById("heart-btn-8");
-  heartBtn8.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
-
-  // Card 9
-  const heartBtn9 = document.getElementById("heart-btn-9");
-  heartBtn9.addEventListener("click", () => {
-    hearts++;
-    document.getElementById("heart-number").innerText = hearts;
-  });
-
-// Coin 1
-let callBtn1 = document.getElementById("call-btn-1");
-callBtn1.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...National Emergency Number!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+  // Clear History
+document.getElementById("clear-button").addEventListener("click", function(){
+  const callCardContainer = document.getElementById("card-container");
+  callCardContainer.innerHTML = "";  
 });
-// Coin 2
-let callBtn2 = document.getElementById("call-btn-2");
-callBtn2.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Police Helpline Number!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+
+function handleCall(name, number, cost = 20) {
+  if (coins >= cost) {
+    
+    coins -= cost;
+    document.getElementById("coin-number").innerText = coins;
+
+    
+    alert(`📞Calling... ${name}`);
+
+    
+    const data = {
+      name: name,
+      number: number,
+      date: new Date().toLocaleTimeString()
+    };
+
+    callHistory.push(data);
+
+    
+    showHistory();
+  } else {
+    alert("Not enough coins! 😢");
+  }
+}
+
+// history render function
+function showHistory() {
+  const callCardContainer = document.getElementById("card-container");
+  callCardContainer.innerText = "";
+  for (const data of callHistory) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <div class="flex justify-between items-center bg-gray-50 rounded-lg p-3">
+        <div>
+          <h1 class="font-bold text-[18px]">${data.name}</h1>
+          <p class="text-gray-700 text-lg">${data.number}</p>
+        </div>
+        <p class=" text-lg">${data.date}</p>
+      </div>
+    `;
+    callCardContainer.appendChild(div);
+  }
+}
+
+
+document.getElementById("call-btn-1").addEventListener("click", function(){
+  handleCall("National Emergency Number", 999);
 });
-// Coin 3
-let callBtn3 = document.getElementById("call-btn-3");
-callBtn3.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Fire Service Number!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-2").addEventListener("click", function(){
+  handleCall("Police Helpline Number", 999);
 });
-// Coin 4
-let callBtn4 = document.getElementById("call-btn-4");
-callBtn4.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Ambulance Service!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-3").addEventListener("click", function(){
+  handleCall("Fire Service Number", 999);
 });
-// Coin 5
-let callBtn5 = document.getElementById("call-btn-5");
-callBtn5.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Women & Child Helpline!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-4").addEventListener("click", function(){
+  handleCall("Ambulance Service", 1994999999);
 });
-// Coin 6
-let callBtn6 = document.getElementById("call-btn-6");
-callBtn6.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Anti-Corruption Helpline!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-5").addEventListener("click", function(){
+  handleCall("Women & Child Helpline", 109);
 });
-// Coin 7
-let callBtn7 = document.getElementById("call-btn-7");
-callBtn7.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Electricity Helpline!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-6").addEventListener("click", function(){
+  handleCall("Anti-Corruption Helpline", 106);
 });
-// Coin 8
-let callBtn8 = document.getElementById("call-btn-8");
-callBtn8.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Brac Helpline!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-7").addEventListener("click", function(){
+  handleCall("Electricity Helpline", 16216);
 });
-// Coin 9
-let callBtn9 = document.getElementById("call-btn-9");
-callBtn9.addEventListener("click", function(){
-    if (coins >= 20) {
-      coins -= 20;
-      document.getElementById("coin-number").innerText = coins;
-      alert("📞Calling...Bangladesh Railway Helpline!");
-    } else {
-      alert("Not enough coins! 😢");
-    }
+document.getElementById("call-btn-8").addEventListener("click", function(){
+  handleCall("Brac Helpline", 16445);
+});
+document.getElementById("call-btn-9").addEventListener("click", function(){
+  handleCall("Bangladesh Railway Helpline", 163);
 });
 
 
-// Copy 1
-  const copyBtn1 = document.getElementById("copy-btn-1");
-  copyBtn1.addEventListener("click", () => {
+// Copy buttons - reusable version
+const copyNumbers = [
+  "999",        
+  "999",        
+  "999",        
+  "1994-999999",
+  "109",        
+  "106",        
+  "16216",      
+  "163" ,        
+  "16445"     
+];
+
+for (let i = 0; i < copyNumbers.length; i++) {
+  const copyBtn = document.getElementById(`copy-btn-${i + 1}`);
+  const number = copyNumbers[i];
+
+  copyBtn.addEventListener("click", () => {
     copys++;
     document.getElementById("copy-number").innerText = copys;
-        const number = "999"; 
+
     navigator.clipboard.writeText(number)
       .then(() => {
         alert("Copied: " + number);
@@ -180,115 +126,4 @@ callBtn9.addEventListener("click", function(){
         alert("Failed to copy!");
       });
   });
-// Copy 2
-  const copyBtn2 = document.getElementById("copy-btn-2");
-  copyBtn2.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "999"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 3
-  const copyBtn3 = document.getElementById("copy-btn-3");
-  copyBtn3.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "999"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 4
-  const copyBtn4 = document.getElementById("copy-btn-4");
-  copyBtn4.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "1994-999999"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 5
-  const copyBtn5 = document.getElementById("copy-btn-5");
-  copyBtn5.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "109"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 6
-  const copyBtn6 = document.getElementById("copy-btn-6");
-  copyBtn6.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "106"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 7
-  const copyBtn7 = document.getElementById("copy-btn-7");
-  copyBtn7.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "16216"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 8
-  const copyBtn8 = document.getElementById("copy-btn-8");
-  copyBtn8.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "16445"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
-// Copy 9
-  const copyBtn9 = document.getElementById("copy-btn-9");
-  copyBtn9.addEventListener("click", () => {
-    copys++;
-    document.getElementById("copy-number").innerText = copys;
-        const number = "163"; 
-    navigator.clipboard.writeText(number)
-      .then(() => {
-        alert("Copied: " + number);
-      })
-      .catch(() => {
-        alert("Failed to copy!");
-      });
-  });
+}
