@@ -23,6 +23,7 @@ document.getElementById("clear-button").addEventListener("click", function(){
   callCardContainer.innerHTML = "";  
 });
 
+// Call History
 function handleCall(name, number, cost = 20) {
   if (coins >= cost) {
     
@@ -48,7 +49,7 @@ function handleCall(name, number, cost = 20) {
   }
 }
 
-// history render function
+
 function showHistory() {
   const callCardContainer = document.getElementById("card-container");
   callCardContainer.innerText = "";
@@ -97,7 +98,7 @@ document.getElementById("call-btn-9").addEventListener("click", function(){
 });
 
 
-// Copy buttons - reusable version
+// Copy button
 const copyNumbers = [
   "999",        
   "999",        
