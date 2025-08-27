@@ -1,60 +1,49 @@
-  let hearts = 0;
-  let coins = 100;
-  let copys = 0;
-  let callHistory = [];
-
-
+let hearts = 0;
+let coins = 100;
+let copys = 0;
+let callHistory = [];
 
 // Hearts Count
 for (let i = 1; i <= 9; i++) {
   const heartBtn = document.getElementById(`heart-btn-${i}`);
-  
+
   heartBtn.addEventListener("click", () => {
     hearts++;
     document.getElementById("heart-number").innerText = hearts;
-    
-    
-    heartBtn.classList.toggle("text-red-500"); 
-    heartBtn.classList.toggle("fa-regular");  
-    heartBtn.classList.toggle("fa-solid");     
+
+    heartBtn.classList.toggle("text-red-500");
+    heartBtn.classList.toggle("fa-regular");
+    heartBtn.classList.toggle("fa-solid");
   });
 }
 
-
-
-
-  // Clear History
-document.getElementById("clear-button").addEventListener("click", function(){
+// Clear History
+document.getElementById("clear-button").addEventListener("click", function () {
   const callCardContainer = document.getElementById("card-container");
-  callCardContainer.innerHTML = "";  
+  callCardContainer.innerHTML = "";
 });
 
 // Call History
 function handleCall(name, number, cost = 20) {
   if (coins >= cost) {
-    
     coins -= cost;
     document.getElementById("coin-number").innerText = coins;
 
-    
     alert(`📞Calling... ${name}`);
 
-    
     const data = {
       name: name,
       number: number,
-      date: new Date().toLocaleTimeString()
+      date: new Date().toLocaleTimeString(),
     };
 
     callHistory.push(data);
 
-    
     showHistory();
   } else {
     alert("Not enough coins! 😢");
   }
 }
-
 
 function showHistory() {
   const callCardContainer = document.getElementById("card-container");
@@ -74,47 +63,45 @@ function showHistory() {
   }
 }
 
-
-document.getElementById("call-btn-1").addEventListener("click", function(){
+document.getElementById("call-btn-1").addEventListener("click", function () {
   handleCall("National Emergency Number", 999);
 });
-document.getElementById("call-btn-2").addEventListener("click", function(){
+document.getElementById("call-btn-2").addEventListener("click", function () {
   handleCall("Police Helpline Number", 999);
 });
-document.getElementById("call-btn-3").addEventListener("click", function(){
+document.getElementById("call-btn-3").addEventListener("click", function () {
   handleCall("Fire Service Number", 999);
 });
-document.getElementById("call-btn-4").addEventListener("click", function(){
+document.getElementById("call-btn-4").addEventListener("click", function () {
   handleCall("Ambulance Service", 1994999999);
 });
-document.getElementById("call-btn-5").addEventListener("click", function(){
+document.getElementById("call-btn-5").addEventListener("click", function () {
   handleCall("Women & Child Helpline", 109);
 });
-document.getElementById("call-btn-6").addEventListener("click", function(){
+document.getElementById("call-btn-6").addEventListener("click", function () {
   handleCall("Anti-Corruption Helpline", 106);
 });
-document.getElementById("call-btn-7").addEventListener("click", function(){
+document.getElementById("call-btn-7").addEventListener("click", function () {
   handleCall("Electricity Helpline", 16216);
 });
-document.getElementById("call-btn-8").addEventListener("click", function(){
+document.getElementById("call-btn-8").addEventListener("click", function () {
   handleCall("Brac Helpline", 16445);
 });
-document.getElementById("call-btn-9").addEventListener("click", function(){
+document.getElementById("call-btn-9").addEventListener("click", function () {
   handleCall("Bangladesh Railway Helpline", 163);
 });
 
-
 // Copy button
 const copyNumbers = [
-  "999",        
-  "999",        
-  "999",        
+  "999",
+  "999",
+  "999",
   "1994-999999",
-  "109",        
-  "106",        
-  "16216",      
-  "163" ,        
-  "16445"     
+  "109",
+  "106",
+  "16216",
+  "163",
+  "16445",
 ];
 
 for (let i = 0; i < copyNumbers.length; i++) {
@@ -125,7 +112,8 @@ for (let i = 0; i < copyNumbers.length; i++) {
     copys++;
     document.getElementById("copy-number").innerText = copys;
 
-    navigator.clipboard.writeText(number)
+    navigator.clipboard
+      .writeText(number)
       .then(() => {
         alert("Copied: " + number);
       })
