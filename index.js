@@ -51,13 +51,14 @@ function showHistory() {
   for (const data of callHistory) {
     const div = document.createElement("div");
     div.innerHTML = `
-      <div class="flex justify-between items-center bg-gray-50 rounded-lg p-3">
-        <div>
-          <h1 class="font-bold text-[18px]">${data.name}</h1>
-          <p class="text-gray-700 text-lg">${data.number}</p>
-        </div>
-        <p class=" text-lg">${data.date}</p>
-      </div>
+      <div class="flex justify-between items-center bg-gray-50 rounded-lg p-2 sm:p-3 lg:p-4">
+  <div>
+    <h1 class="font-bold text-sm sm:text-base lg:text-sm">${data.name}</h1>
+    <p class="text-gray-700 text-xs sm:text-sm lg:text-sm">${data.number}</p>
+  </div>
+  <p class="text-xs sm:text-sm lg:text-base">${data.date}</p>
+</div>
+
     `;
     callCardContainer.appendChild(div);
   }
